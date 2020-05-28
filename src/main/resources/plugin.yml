@@ -1,0 +1,4 @@
+name: TrollAssistant
+version: ${project.version}
+main: me.amar.trollassistant.trollassistant.TrollAssistant
+api-version: 1.13
