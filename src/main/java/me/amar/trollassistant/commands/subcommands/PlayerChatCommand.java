@@ -35,7 +35,7 @@ public class PlayerChatCommand extends SubCommand {
         }
         String message = "";
         for (int i = 2; i < args.length; i++) {
-            message += "" + args[i];
+            message = message + " " + args[i];
         }
         target.chat(TrollAssistant.colorize(message));
 

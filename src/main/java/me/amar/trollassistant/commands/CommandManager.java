@@ -63,7 +63,6 @@ private final TrollAssistant plugin = TrollAssistant.getPlugin(TrollAssistant.cl
                         }
                     }
                 }
-
         } return true;
     }
     public ArrayList<SubCommand> getSubCommands() {

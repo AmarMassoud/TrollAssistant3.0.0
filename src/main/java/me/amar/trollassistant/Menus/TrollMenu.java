@@ -12,12 +12,6 @@ import java.util.Arrays;
 public class TrollMenu extends CustomMenu {
     public TrollMenu(Player player, Player target) {
         super(36, "troll " + target.getName());
-//        ItemStack Item_Skull = new ItemStack(Material.PLAYER_HEAD, 1, (short) 3);
-//        ItemStack item = new ItemStack(Material.PLAYER_HEAD, 1, (short) 3);
-//        SkullMeta skull = (SkullMeta) Item_Skull.getItemMeta();
-//        skull.setOwner(target.getName());
-//        skull.setDisplayName(TrollAssistant.colorize("&c&lPlayerChat troll "));
-
         setItem(9, ItemBuilder.build(new ItemStack(Material.WATER_BUCKET), "&c&lMLG troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cMLG &etroll!", "&aforce your frenemies to MLG water clutch!")), event -> {
             Bukkit.dispatchCommand(event.getWhoClicked(), "troll " + target.getName() + " mlg");
             player.closeInventory();
