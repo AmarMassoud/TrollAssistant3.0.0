@@ -1,7 +1,7 @@
-package me.amar.trollassistant.trollassistant.commands.subcommands;
+package me.amar.trollassistant.commands.subcommands;
 
-import me.amar.trollassistant.trollassistant.TrollAssistant;
-import me.amar.trollassistant.trollassistant.commands.SubCommand;
+import me.amar.trollassistant.TrollAssistant;
+import me.amar.trollassistant.commands.SubCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -17,7 +17,7 @@ public class MLGCommand extends SubCommand {
 
     @Override
     public String getDescription() {
-        return "Troll player with the MLG troll";
+        return "Troll player with the MLG troll.";
     }
 
     @Override
@@ -32,6 +32,7 @@ public class MLGCommand extends SubCommand {
             target = Bukkit.getPlayer(args[0]);
         } catch (Exception e) {
             e.printStackTrace();
+        }
             if (!p.hasPermission("troll.mlg")) {
                 p.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
             }
@@ -54,4 +55,3 @@ public class MLGCommand extends SubCommand {
 
         }
     }
-}

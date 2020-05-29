@@ -1,4 +1,4 @@
-package me.amar.trollassistant.trollassistant.commands;
+package me.amar.trollassistant.commands;
 
 import org.bukkit.entity.Player;
 

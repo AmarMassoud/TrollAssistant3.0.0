@@ -1,5 +1,12 @@
-package me.amar.trollassistant.trollassistant;
+package me.amar.trollassistant;
 
+import me.amar.trollassistant.commands.CommandManager;
+import me.amar.trollassistant.commands.TabExecutor;
+import me.amar.trollassistant.listeners.PlayerMoveEvent;
+import me.amar.trollassistant.listeners.TrolledPlayerChatListener;
+import me.amar.trollassistant.listeners.TrolledPlayerConsumeListener;
+import me.amar.trollassistant.modules.ReplaceTrollPlayer;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,17 +20,21 @@ public final class TrollAssistant extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getLogger().info("Troll Assistant Enabled");
+        getCommand("troll").setExecutor(new CommandManager());
+        Bukkit.getPluginManager().registerEvents(new TrolledPlayerChatListener(), this);
+        Bukkit.getPluginManager().registerEvents(new TrolledPlayerConsumeListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerMoveEvent(), this);
+        getCommand("troll").setTabCompleter(new TabExecutor());
         getConfig().options().copyDefaults(true);
         saveConfig();
-        getLogger().info("Troll Assistant enabled.");
+         getLogger().info("Troll Assistant " + getDescription().getVersion() + " enabled");
         instance = this;
 
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        getLogger().info("Troll Assistant " + getDescription().getVersion() + " disabled");
     }
 
     public static List<ReplaceTrollPlayer> getReplaceTrollPlayers() {

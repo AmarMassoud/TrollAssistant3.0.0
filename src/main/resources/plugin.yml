@@ -1,4 +1,7 @@
 name: TrollAssistant
-version: ${project.version}
-main: me.amar.trollassistant.trollassistant.TrollAssistant
+version: 3.0.0
+main: me.amar.trollassistant.TrollAssistant
 api-version: 1.13
+commands:
+  troll:
+    description: troll your players with ease.
