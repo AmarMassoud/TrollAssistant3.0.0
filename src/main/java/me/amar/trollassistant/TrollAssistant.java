@@ -53,10 +53,4 @@ public final class TrollAssistant extends JavaPlugin {
     public static TrollAssistant getInstance() {
         return instance;
     }
-
-    public String getNoPermission() {
-    return getConfig().getString("messages.NoPermission");
-
     }
-}
-

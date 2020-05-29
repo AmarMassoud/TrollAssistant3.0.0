@@ -32,7 +32,7 @@ private final TrollAssistant plugin = TrollAssistant.getPlugin(TrollAssistant.cl
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if (sender instanceof Player) {
-            Player p = (Player) sender;
+            Player player = (Player) sender;
             Player target = null;
             try {
                 target = Bukkit.getPlayer(args[0]);
@@ -42,26 +42,26 @@ private final TrollAssistant plugin = TrollAssistant.getPlugin(TrollAssistant.cl
             if (target == null && !args[0].toLowerCase().equals("reload")) {
                 sender.sendMessage(TrollAssistant.colorize("&cYour target must be online."));
             }
-            if (args.length < 0) {
-                p.sendMessage(TrollAssistant.colorize("You have to specify a player"));
+            if (args[0] == null) {
+                player.sendMessage(TrollAssistant.colorize("You have to specify a player"));
             }
             if ("reload".equals(args[0].toLowerCase())) {
                 System.out.println("Reloading config");
                 plugin.reloadConfig();
-                p.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.reload")));
+                player.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.reload")));
 
             }
                 else if (args.length == 1) {
-                    p.sendMessage(TrollAssistant.colorize("&eTrolling &c" + p.getName()));
-                    new TrollMenu(p, target);
+                    player.sendMessage(TrollAssistant.colorize("&eTrolling &c" + player.getName()));
+                    new TrollMenu(player, target);
 
 
                 } else {
                     for (int i = 0; i < getSubCommands().size(); i++) {
-                        if (args[1].equalsIgnoreCase(getSubCommands().get(i).getName())) ;
-                        getSubCommands().get(i).preform(p, args);
+                        if (args[1].equalsIgnoreCase(getSubCommands().get(i).getName())) {
+                            getSubCommands().get(i).preform(player, args);
+                        }
                     }
-
                 }
 
         } return true;

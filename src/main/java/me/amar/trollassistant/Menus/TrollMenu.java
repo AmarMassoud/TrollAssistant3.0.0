@@ -73,8 +73,9 @@ public class TrollMenu extends CustomMenu {
             setItem(i, ItemBuilder.build(new ItemStack(Material.RED_STAINED_GLASS_PANE), "&cTroll Assistant &e" + target.getName(), Arrays.asList("")), event -> {
                 player.closeInventory();
             });
-            open(player);
         }
+            open(player);
+
 
     }
 }
