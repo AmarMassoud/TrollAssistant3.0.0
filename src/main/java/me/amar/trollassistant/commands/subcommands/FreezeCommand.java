@@ -4,6 +4,7 @@ import me.amar.trollassistant.TrollAssistant;
 import me.amar.trollassistant.commands.SubCommand;
 import me.amar.trollassistant.listeners.Frozen;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -37,7 +38,7 @@ public class FreezeCommand extends SubCommand {
         if (!p.hasPermission("troll.freeze") || !p.hasPermission("troll.*")) {
             p.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
         } else {
-            if (target.getGameMode().equals("Creative")) {
+            if (target.getGameMode() == GameMode.CREATIVE) {
                 p.sendMessage(TrollAssistant.colorize(target.getDisplayName() + " is in creative. This troll does not work on players who are in creative."));
             } else {
                 if (!Frozen.isFrozenPlayer(target.getUniqueId().toString())) {

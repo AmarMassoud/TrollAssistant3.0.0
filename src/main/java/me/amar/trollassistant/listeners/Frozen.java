@@ -26,4 +26,7 @@ public class Frozen {
             return false;
         }
     }
+    public static void resetFrozenList() {
+        frozen.clear();
+    }
 }

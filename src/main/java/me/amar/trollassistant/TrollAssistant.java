@@ -3,8 +3,7 @@ package me.amar.trollassistant;
 import com.demeng7215.demlib.DemLib;
 import me.amar.trollassistant.commands.CommandManager;
 import me.amar.trollassistant.commands.TabExecutor;
-import me.amar.trollassistant.listeners.TrolledPlayerChatListener;
-import me.amar.trollassistant.listeners.TrolledPlayerConsumeListener;
+import me.amar.trollassistant.listeners.*;
 import me.amar.trollassistant.modules.ReplaceTrollPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -24,10 +23,12 @@ public final class TrollAssistant extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new TrolledPlayerChatListener(), this);
         Bukkit.getPluginManager().registerEvents(new TrolledPlayerConsumeListener(), this);
         getCommand("troll").setTabCompleter(new TabExecutor());
+        Bukkit.getPluginManager().registerEvents(new PlayerDisconnectListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerGameModeChangeListener(), this);
         getConfig().options().copyDefaults(true);
         saveConfig();
         DemLib.setPlugin(this);
-         getLogger().info("Troll Assistant " + getDescription().getVersion() + " enabled");
+        getLogger().info("Troll Assistant " + getDescription().getVersion() + " enabled");
         instance = this;
 
 
@@ -36,6 +37,7 @@ public final class TrollAssistant extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().info("Troll Assistant " + getDescription().getVersion() + " disabled");
+        Frozen.resetFrozenList();
     }
 
     public static List<ReplaceTrollPlayer> getReplaceTrollPlayers() {
@@ -54,4 +56,4 @@ public final class TrollAssistant extends JavaPlugin {
     public static TrollAssistant getInstance() {
         return instance;
     }
-    }
+}

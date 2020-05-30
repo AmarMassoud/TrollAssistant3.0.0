@@ -12,6 +12,12 @@ public class TrolledPlayerConsumeListener implements Listener {
     private final TrollAssistant plugin = TrollAssistant.getPlugin(TrollAssistant.class);
     @EventHandler
     public void onCursedGappleConsume(PlayerItemConsumeEvent e) {
+        Player p = e.getPlayer();
+        if (Frozen.isFrozenPlayer(p.getUniqueId().toString())) {
+            e.setCancelled(true);
+            p.sendMessage(TrollAssistant.colorize("You can not eat while being frozen!"));
+        } else {
+
         if (e.getItem().getType() != Material.GOLDEN_APPLE) return;
         ItemStack apple = e.getItem();
         if (!apple.hasItemMeta() || !apple.getItemMeta().hasDisplayName() || !apple.getItemMeta().hasLore()) return;
@@ -20,7 +26,7 @@ public class TrolledPlayerConsumeListener implements Listener {
         if (!apple.getItemMeta().getLore().get(0).equals(TrollAssistant.colorize("&bThe curiosity got the cat killed")))
             return;
         e.setCancelled(true);
-        Player p = e.getPlayer();
+
         p.setHealth(plugin.getConfig().getInt("hearts"));
         p.sendMessage(TrollAssistant.colorize("&cYou have been cursed with the golden apple curse!"));
         int amount = apple.getAmount() - 1;
@@ -29,6 +35,7 @@ public class TrolledPlayerConsumeListener implements Listener {
         } else {
             p.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
         }
+    }
         p.updateInventory();
 
     }

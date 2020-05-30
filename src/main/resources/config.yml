@@ -4,3 +4,4 @@ messages:
   NoPermission: "&2[&6Troll Assistant&2] &cYou do not have permission."
   freeze: "&cYou have been frozen!"
   unfreeze: "&cYou have been unfreezed!"
+  freezeOnLogin: "&cYou are still freezed."
