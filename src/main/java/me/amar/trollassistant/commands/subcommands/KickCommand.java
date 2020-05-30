@@ -3,6 +3,7 @@ package me.amar.trollassistant.commands.subcommands;
 import me.amar.trollassistant.TrollAssistant;
 import me.amar.trollassistant.commands.SubCommand;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class KickCommand extends SubCommand {
@@ -24,17 +25,17 @@ public class KickCommand extends SubCommand {
     }
 
     @Override
-    public void preform(Player p, String[] args) {
+    public void preform(Player p, CommandSender s, String[] args) {
         Player target = null;
         try {
             target = Bukkit.getPlayer(args[0]);
         } catch (Exception e) {
             e.printStackTrace();
         }
-            if (!p.hasPermission("troll.kick") || !p.hasPermission("troll.*")) {
-                p.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
+            if (!s.hasPermission("troll.kick") || !s.hasPermission("troll.*")) {
+                s.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
             }
             target.kickPlayer("internal exception java.io.ioexception an existing connection was forcibly closed by the remote host");
-            p.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2]" + target.getDisplayName() + "&chas been trolled with the &bKick &ctroll."));
+            s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2]" + target.getDisplayName() + "&chas been trolled with the &bKick &ctroll."));
         }
     }

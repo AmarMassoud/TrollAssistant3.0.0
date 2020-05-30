@@ -1,5 +1,6 @@
 package me.amar.trollassistant.commands;
 
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public abstract class SubCommand {
@@ -11,6 +12,6 @@ public abstract class SubCommand {
 
     public abstract String getSyntax();
 
-    public abstract void preform(Player p, String args[]);
+    public abstract void preform(Player p, CommandSender s, String args[]);
 
 }

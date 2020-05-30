@@ -11,22 +11,16 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class PlayerDisconnectListener implements Listener {
     private final TrollAssistant plugin = TrollAssistant.getPlugin(TrollAssistant.class);
+
     public void disconnect(PlayerLoginEvent e) {
         Player p = e.getPlayer();
-        if(Frozen.isFrozenPlayer(p.getUniqueId().toString())) {
+        if (Frozen.isFrozenPlayer(p.getUniqueId().toString())) {
             p.removePotionEffect(PotionEffectType.JUMP);
             p.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.freezeOnLogin")));
-            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-                @Override
-                public void run() {
-                    p.setWalkSpeed(0);
-                    p.setFoodLevel(3);
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 99999, 200), true);
-                }
-            }, 10L);
+            p.setWalkSpeed(0);
+            p.setFoodLevel(3);
+            p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 99999, 200), true);
         }
-
-
 
 
     }

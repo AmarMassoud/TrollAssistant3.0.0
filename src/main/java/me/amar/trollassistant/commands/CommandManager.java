@@ -59,7 +59,7 @@ private final TrollAssistant plugin = TrollAssistant.getPlugin(TrollAssistant.cl
                 } else {
                     for (int i = 0; i < getSubCommands().size(); i++) {
                         if (args[1].equalsIgnoreCase(getSubCommands().get(i).getName())) {
-                            getSubCommands().get(i).preform(player, args);
+                            getSubCommands().get(i).preform(player, sender, args);
                         }
                     }
                 }
