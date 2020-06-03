@@ -1,7 +1,9 @@
 package me.amar.trollassistant.commands.subcommands;
 
+import com.demeng7215.demlib.api.items.XMaterial;
 import me.amar.trollassistant.TrollAssistant;
 import me.amar.trollassistant.commands.SubCommand;
+import me.amar.trollassistant.commands.hasPermission;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -26,19 +28,19 @@ public class PotatoCommand extends SubCommand {
     }
 
     @Override
-    public void preform(Player p, CommandSender s, String[] args) {
+    public void perform(CommandSender s, String[] args) {
         Player target = null;
         try {
             target = Bukkit.getPlayer(args[0]);
         } catch (Exception e) {
             e.printStackTrace();
         }
-            if (!s.hasPermission("troll.potato")) {
+            if (!hasPermission.hasPermissions(s, "troll.potato")) {
                 s.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
             }
 
             for (int i = 0; i <= 35; i++) {
-                target.getInventory().setItem(i, new ItemStack(Material.POTATO));
+                target.getInventory().setItem(i, new ItemStack(XMaterial.POTATO.parseItem()));
             }
 
             target.updateInventory();

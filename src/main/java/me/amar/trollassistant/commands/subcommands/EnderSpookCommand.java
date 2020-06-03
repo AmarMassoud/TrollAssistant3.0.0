@@ -27,7 +27,7 @@ public class EnderSpookCommand extends SubCommand {
     }
 
     @Override
-    public void preform(Player p, CommandSender s, String[] args) {
+    public void perform(CommandSender s, String[] args) {
         Player target = null;
         try {
             target = Bukkit.getPlayer(args[0]);
@@ -35,11 +35,18 @@ public class EnderSpookCommand extends SubCommand {
             e.printStackTrace();
         }
         if (!s.hasPermission("troll.enderspook") || !s.hasPermission("troll.*")) {
-            p.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
+            s.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
         } else {
             target.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 300, 1), true);
-            for (int i = 0; i < 10; i++) {
-                target.playSound(target.getLocation(), Sound.ENTITY_ENDERMAN_SCREAM, 10, 1);
+
+            if(Bukkit.getVersion().contains("1.8")) {
+                for (int i = 0; i < 10; i++) {
+                    target.playSound(target.getLocation(), Sound.valueOf("ENDERMAN_SCREAM"), 10, 1);
+                }
+            } else {
+                for (int i = 0; i < 10; i++) {
+                    target.playSound(target.getLocation(), Sound.valueOf("ENTITY_ENDERMAN_SCREAM"), 10, 1);
+                }
             }
             s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2] " + target.getDisplayName() + " &chas been trolled with the &bEnderSpook &ctroll."));
         }

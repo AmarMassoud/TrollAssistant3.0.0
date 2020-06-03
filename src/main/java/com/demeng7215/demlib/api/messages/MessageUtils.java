@@ -87,7 +87,7 @@ public final class MessageUtils {
 		console("&4" + CONSOLE_LINE,
 				"&cUnfortunately, an error has occurred in " + Common.getName() + ".",
 				"&cIf you are unable to fix this issue, please contact support.",
-				"&cBelow are some important information regarding the error.",
+				"&cBelow are some important informationn regardig the error.",
 				"&cError Identification Number: &6" + id,
 				"&cDescription: &6" + description,
 				"&4" + CONSOLE_LINE);

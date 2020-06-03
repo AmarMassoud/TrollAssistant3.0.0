@@ -26,7 +26,7 @@ public class ChatCommand extends SubCommand {
     }
 
     @Override
-    public void preform(Player p, CommandSender s, String[] args) {
+    public void perform(CommandSender s, String[] args) {
         Player target = null;
         try {
             target = Bukkit.getPlayer(args[0]);
@@ -43,22 +43,28 @@ public class ChatCommand extends SubCommand {
             TrollAssistant.getReplaceTrollPlayers()
                     .removeIf(rtp -> rtp.getPlayer().getUniqueId().equals(finalTarget.getUniqueId()));
 
-            s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2]" + "&cChat curse has been removed."));
+            s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2]" + " &cChat curse has been removed."));
         }
 
-        if (args.length < 4) {
+        if (args.length > 4) {
             s.sendMessage(
                     TrollAssistant.colorize(
                             "&2[&6Troll Assistant&2] &cIncorrect usage. Try &f/troll <target> <troll> <replace> <replacewith>"));
+        } else if (args.length == 4) {
+
+            final ReplaceTrollPlayer rtp =
+                    new ReplaceTrollPlayer(target, args[2].toCharArray()[0], args[3].toCharArray()[0]);
+            TrollAssistant.getReplaceTrollPlayers().add(rtp);
+
+            target.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2] &dYou have been cursed with the chat curse."));
+            s.sendMessage(
+                    TrollAssistant.colorize(
+                            "&2[&6Troll Assistant&2] " + target.getDisplayName() + " &chas been trolled with the &bChat &ctroll."));
+
+        } else if(args.length == 2) {
+            s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2] &cIncorrect usage. Try &f/troll <target> <troll> <replace> <replacewith>"));
+
         }
-
-        final ReplaceTrollPlayer rtp =
-                new ReplaceTrollPlayer(target, args[2].toCharArray()[0], args[3].toCharArray()[0]);
-        TrollAssistant.getReplaceTrollPlayers().add(rtp);
-
-        target.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2] &dYou have been cursed with the chat curse."));
-        s.sendMessage(
-                TrollAssistant.colorize(
-                        "&2[&6Troll Assistant&2] " + target.getDisplayName() + " &chas been trolled with the &bChat &ctroll."));
     }
 }
+// /troll MagnifiedNeonate chat cancel

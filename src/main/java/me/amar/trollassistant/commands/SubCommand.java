@@ -12,6 +12,6 @@ public abstract class SubCommand {
 
     public abstract String getSyntax();
 
-    public abstract void preform(Player p, CommandSender s, String args[]);
+    public abstract void perform(CommandSender s, String args[]);
 
 }

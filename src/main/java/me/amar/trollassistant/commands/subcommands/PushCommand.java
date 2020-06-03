@@ -24,7 +24,7 @@ public class PushCommand extends SubCommand {
     }
 
     @Override
-    public void preform(Player p, CommandSender s, String[] args) {
+    public void perform(CommandSender s, String[] args) {
         Player target = null;
         try {
             target = Bukkit.getPlayer(args[0]);

@@ -33,7 +33,7 @@ public class TrolledPlayerConsumeListener implements Listener {
         if (apple.getAmount() > 1) {
             apple.setAmount(amount);
         } else {
-            p.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
+            p.getInventory().setItem(p.getInventory().getHeldItemSlot() ,new ItemStack(Material.AIR));
         }
     }
         p.updateInventory();
