@@ -22,7 +22,6 @@ public class Frozen {
             ex.printStackTrace();
         }
     }
-
     public static void removePlayerFromFrozenList(String p) {
         List<String> copy = new ArrayList<>(plugin.getData().getStringList("frozen"));
         copy.remove(p);
@@ -32,7 +31,6 @@ public class Frozen {
         } catch(Exception ex) {
             ex.printStackTrace();
         }
-
     }
 
     public static boolean isFrozenPlayer(String p) {

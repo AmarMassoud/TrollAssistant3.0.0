@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class MLGCommand extends SubCommand {
     private final TrollAssistant plugin = TrollAssistant.getPlugin(TrollAssistant.class);
+
     @Override
     public String getName() {
         return "mlg";
@@ -34,9 +35,9 @@ public class MLGCommand extends SubCommand {
         } catch (Exception e) {
             e.printStackTrace();
         }
-            if (!s.hasPermission("troll.mlg")  || !s.hasPermission("troll.*")) {
-                s.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
-            }
+        if (!s.hasPermission("troll.mlg") || !s.hasPermission("troll.*")) {
+            s.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
+        } else {
 
             final Location loc =
                     new Location(
@@ -56,3 +57,4 @@ public class MLGCommand extends SubCommand {
 
         }
     }
+}

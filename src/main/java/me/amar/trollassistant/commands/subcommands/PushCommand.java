@@ -37,7 +37,7 @@ public class PushCommand extends SubCommand {
             target.setVelocity(target.getVelocity().setY(0));
             target.setVelocity(target.getLocation().getDirection().multiply(-3.1D));
             target.setVelocity(target.getVelocity().setY(1.12D));
-            target.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2] " + target.getDisplayName() + " &chas been trolled with the &bPush &ctroll."));
+            s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2] " + target.getDisplayName() + " &chas been trolled with the &bPush &ctroll."));
         }
     }
 }

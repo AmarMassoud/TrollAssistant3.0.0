@@ -3,7 +3,8 @@ package me.amar.trollassistant;
 import com.demeng7215.demlib.DemLib;
 import com.demeng7215.demlib.api.files.CustomConfig;
 import lombok.Getter;
-import me.amar.trollassistant.commands.CommandManager;
+import me.amar.trollassistant.Global.GlobalTrollCommandManager;
+import me.amar.trollassistant.commands.TrollCommandManager;
 import me.amar.trollassistant.commands.TabExecutor;
 import me.amar.trollassistant.listeners.*;
 import me.amar.trollassistant.modules.ReplaceTrollPlayer;
@@ -31,14 +32,17 @@ public final class TrollAssistant extends JavaPlugin {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        getCommand("troll").setExecutor(new CommandManager());
+        getCommand("troll").setExecutor(new TrollCommandManager());
+        getCommand("globaltroll").setExecutor(new GlobalTrollCommandManager());
         Bukkit.getPluginManager().registerEvents(new TrolledPlayerChatListener(), this);
         Bukkit.getPluginManager().registerEvents(new TrolledPlayerConsumeListener(), this);
+        Bukkit.getPluginManager().registerEvents(new CarrotChatListener(), this);
         getCommand("troll").setTabCompleter(new TabExecutor());
         Bukkit.getPluginManager().registerEvents(new PlayerLoginListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerGameModeChangeListener(), this);
         getConfig().options().copyDefaults(true);
         saveConfig();
+
 
         getLogger().info("Troll Assistant " + getDescription().getVersion() + " enabled");
         instance = this;

@@ -10,9 +10,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
-public class TrollMenu extends CustomMenu {
+public class PersonalTrollsMenu extends CustomMenu {
     ItemStack waterBucket = XMaterial.WATER_BUCKET.parseItem();
-    public TrollMenu(Player player, Player target) {
+    public PersonalTrollsMenu(Player player, Player target) {
         super(36, "troll " + target.getName());
         setItem(9, ItemBuilder.build(new ItemStack(XMaterial.WATER_BUCKET.parseItem()), "&c&lMLG troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cMLG &etroll!", "&aforce your frenemies to MLG water clutch!")), event -> {
             Bukkit.dispatchCommand(event.getWhoClicked(), "troll " + target.getName() + " mlg");

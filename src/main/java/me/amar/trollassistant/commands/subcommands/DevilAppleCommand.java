@@ -14,6 +14,7 @@ import java.util.Collections;
 
 public class DevilAppleCommand extends SubCommand {
     private final TrollAssistant plugin = TrollAssistant.getPlugin(TrollAssistant.class);
+
     @Override
     public String getName() {
         return "DevilApple";
@@ -39,18 +40,19 @@ public class DevilAppleCommand extends SubCommand {
         }
         if (!s.hasPermission("troll.devilapple")) {
             s.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
+        } else {
+            ItemStack item = new ItemStack(Material.GOLDEN_APPLE, 1);
+
+            ItemMeta meta = item.getItemMeta();
+            meta.setDisplayName(TrollAssistant.colorize("&cThe Apple of the Devil!"));
+            ArrayList<String> lore = new ArrayList<String>();
+            meta.setLore(Collections.singletonList(TrollAssistant.colorize("&bThe curiosity got the cat killed")));
+            item.setItemMeta(meta);
+
+            target.getInventory().addItem(item);
+            target.sendMessage(TrollAssistant.colorize("&cYou have been given a golden apple!"));
+            s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2] " + target.getDisplayName() + " &chas been trolled with the &bDevil Apple &ctroll."));
+
         }
-        ItemStack item = new ItemStack(Material.GOLDEN_APPLE, 1);
-
-        ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(TrollAssistant.colorize("&cThe Apple of the Devil!"));
-        ArrayList<String> lore = new ArrayList<String>();
-        meta.setLore(Collections.singletonList(TrollAssistant.colorize("&bThe curiosity got the cat killed")));
-        item.setItemMeta(meta);
-
-        target.getInventory().addItem(item);
-        target.sendMessage(TrollAssistant.colorize("&cYou have been given a golden apple!"));
-        s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2] " + target.getDisplayName() + " &chas been trolled with the &bDevil Apple &ctroll."));
-
     }
 }

@@ -43,6 +43,22 @@ public class EnderSpookCommand extends SubCommand {
                 for (int i = 0; i < 10; i++) {
                     target.playSound(target.getLocation(), Sound.valueOf("ENDERMAN_SCREAM"), 10, 1);
                 }
+            } else if(Bukkit.getVersion().contains("1.9")) {
+                for (int i = 0; i < 10; i++) {
+                    target.playSound(target.getLocation(), Sound.valueOf("ENTITY_ENDERMEN_SCREAM"), 10, 1);
+                }
+            } else if( Bukkit.getVersion().contains("1.10")) {
+                for (int i = 0; i < 10; i++) {
+                    target.playSound(target.getLocation(), Sound.valueOf("ENTITY_ENDERMEN_SCREAM"), 10, 1);
+                }
+            } else if(Bukkit.getVersion().contains("1.11")){
+                for (int i = 0; i < 10; i++) {
+                    target.playSound(target.getLocation(), Sound.valueOf("ENTITY_ENDERMEN_SCREAM"), 10, 1);
+                }
+            } else if(Bukkit.getVersion().contains("1.12")) {
+                for (int i = 0; i < 10; i++) {
+                    target.playSound(target.getLocation(), Sound.valueOf("ENTITY_ENDERMEN_SCREAM"), 10, 1);
+                }
             } else {
                 for (int i = 0; i < 10; i++) {
                     target.playSound(target.getLocation(), Sound.valueOf("ENTITY_ENDERMAN_SCREAM"), 10, 1);

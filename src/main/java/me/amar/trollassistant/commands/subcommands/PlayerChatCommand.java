@@ -11,6 +11,7 @@ import java.util.Arrays;
 
 public class PlayerChatCommand extends SubCommand {
     private final TrollAssistant plugin = TrollAssistant.getPlugin(TrollAssistant.class);
+
     @Override
     public String getName() {
         return "playerchat";
@@ -36,10 +37,11 @@ public class PlayerChatCommand extends SubCommand {
         }
         if (!s.hasPermission("troll.playerchat") || !s.hasPermission("troll.*")) {
             s.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
-        }
-        String args2 = Arrays.copyOfRange(args, 1, args.length).toString();
-        final String[] messages = Arrays.copyOfRange(args, 2, args.length);
-        target.chat(TrollAssistant.colorize(Joiner.on(' ').skipNulls().join(messages)));
+        } else {
+            String args2 = Arrays.copyOfRange(args, 1, args.length).toString();
+            final String[] messages = Arrays.copyOfRange(args, 2, args.length);
+            target.chat(TrollAssistant.colorize(Joiner.on(' ').skipNulls().join(messages)));
 
+        }
     }
 }

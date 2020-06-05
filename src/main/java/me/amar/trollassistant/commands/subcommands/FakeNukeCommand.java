@@ -2,7 +2,6 @@ package me.amar.trollassistant.commands.subcommands;
 
 import me.amar.trollassistant.TrollAssistant;
 import me.amar.trollassistant.commands.SubCommand;
-import me.amar.trollassistant.commands.hasPermission;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;

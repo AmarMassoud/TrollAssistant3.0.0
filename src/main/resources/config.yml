@@ -3,5 +3,5 @@ messages:
   reload: "&cConfig reloaded"
   NoPermission: "&2[&6Troll Assistant&2] &cYou do not have permission."
   freeze: "&cYou have been frozen!"
-  unfreeze: "&cYou have been unfreezed!"
+  unfreeze: "&cYou have been unfrozen!"
   freezeOnLogin: "&cYou are still freezed."
