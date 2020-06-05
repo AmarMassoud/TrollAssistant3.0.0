@@ -40,10 +40,9 @@ public final class TrollAssistant extends JavaPlugin {
         getCommand("troll").setTabCompleter(new TabExecutor());
         Bukkit.getPluginManager().registerEvents(new PlayerLoginListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerGameModeChangeListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ChatPlayersListener(), this);
         getConfig().options().copyDefaults(true);
         saveConfig();
-
-
         getLogger().info("Troll Assistant " + getDescription().getVersion() + " enabled");
         instance = this;
 

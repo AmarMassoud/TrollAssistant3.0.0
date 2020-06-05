@@ -36,73 +36,37 @@ public class TrollCommandManager implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-//        if (args.length == 0) {
-//            new MainTrollMenu((Player) sender);
-//            sender.sendMessage(TrollAssistant.colorize("opened main gui"));
-//        } else {
-//            Player target = null;
-//            try {
-//                target = Bukkit.getPlayer(args[0]);
-//            } catch (Exception e) {
-//                sender.sendMessage(TrollAssistant.colorize("&cWrong usage."));
-//            }
-//            if (target == null && !args[0].toLowerCase().equals("reload") && !args[0].equalsIgnoreCase("carrot")) {
-//                new MainTrollMenu((Player) sender);
-//                sender.sendMessage(TrollAssistant.colorize("opened main gui"));
-//            }
-//            if ("reload".equals(args[0].toLowerCase())) {
-//                System.out.println("Reloading config");
-//                plugin.reloadConfig();
-//                sender.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.reload")));
-//
-//
-//            } else if("carrot".equalsIgnoreCase(args[0])) {
-//                Bukkit.dispatchCommand(sender, "troll carrot");
-//            }
-//
-//            else if (args.length == 1) {
-//                if (sender instanceof Player) {
-//                    sender.sendMessage(TrollAssistant.colorize("&eTrolling &c" + sender.getName()));
-//                    new PersonalTrollsMenu((Player) sender, target);
-//                } else {
-//                    sender.sendMessage(TrollAssistant.colorize("&cThis command can only be used by players"));
-//                }
-//
-//            }
-
         if (args.length == 0) {
-            new MainTrollMenu((Player) sender);
-        } else if (args.length == 1) {
-            if (args[0].equalsIgnoreCase("reload")) {
-                plugin.reloadConfig();
-                sender.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.reload")));
-            } else {
-                if (sender instanceof Player) {
-                    Player target = null;
-                    try {
-                        target = Bukkit.getPlayer(args[0]);
-                    } catch (Exception e) {
-                        sender.sendMessage(TrollAssistant.colorize("&cWrong usage."));
-                    }
-                    new PersonalTrollsMenu((Player) sender, target);
-                } else {
-                sender.sendMessage("Only players can use this command.");
-                }
-            }
-
-        } else if(args.length == 2) {
-            for (int i = 0; i < getSubCommands().size(); i++) {
-                if (args[1].equalsIgnoreCase(getSubCommands().get(i).getName())) {
-                    getSubCommands().get(i).perform(sender, args);
-                }
-            }
+           new MainTrollMenu((Player) sender);
         } else {
-            sender.sendMessage(TrollAssistant.colorize("&cIncorrect usage."));
-
-    }
-
+            Player target = null;
+            try {
+                target = Bukkit.getPlayer(args[0]);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            if (target == null && !args[0].toLowerCase().equals("reload"))
+                sender.sendMessage(TrollAssistant.colorize("&cYour target must be online."));
+            if ("reload".equals(args[0].toLowerCase())) {
+                System.out.println("Reloading config");
+                this.plugin.reloadConfig();
+                sender.sendMessage(TrollAssistant.colorize(this.plugin.getConfig().getString("messages.reload")));
+            } else if (args.length == 1) {
+                if (sender instanceof Player) {
+                    sender.sendMessage(TrollAssistant.colorize("&eTrolling &c" + target.getName()));
+                    new PersonalTrollsMenu((Player)sender, target);
+                } else {
+                    sender.sendMessage(TrollAssistant.colorize("&cThis command can only be used by players"));
+                }
+            } else {
+                for (int i = 0; i < getSubCommands().size(); i++) {
+                    if (args[1].equalsIgnoreCase(((SubCommand)getSubCommands().get(i)).getName()))
+                        ((SubCommand)getSubCommands().get(i)).perform(sender, args);
+                }
+            }
+        }
         return true;
-}
+    }
 
     public ArrayList<SubCommand> getSubCommands() {
         return SubCommands;

@@ -3,6 +3,8 @@ package me.amar.trollassistant.Menus;
 import com.demeng7215.demlib.api.items.ItemBuilder;
 import com.demeng7215.demlib.api.items.XMaterial;
 import com.demeng7215.demlib.api.menus.CustomMenu;
+import me.amar.trollassistant.TrollAssistant;
+import me.amar.trollassistant.listeners.ChatPlayers;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -14,6 +16,9 @@ public class MainTrollMenu extends CustomMenu {
     public MainTrollMenu(Player p) {
         super(36, "&bChoose an option");
         setItem(13, ItemBuilder.build(new ItemStack(XMaterial.PLAYER_HEAD.parseItem()), "&b&lPersonal Troll Menu", Arrays.asList("\"Click me to choose from the global trolls.\"")), event -> {
+            ChatPlayers.addPlayer(p.toString());
+            p.sendMessage(TrollAssistant.colorize("added to list - menu"));
+
             p.closeInventory();
         });
         setItem(15, ItemBuilder.build(new ItemStack(XMaterial.SKELETON_SKULL.parseItem()), "&b&lGlobal Trolls.", Arrays.asList("Click me to choose from the global trolls.")), event -> {
