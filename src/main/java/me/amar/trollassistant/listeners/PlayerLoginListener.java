@@ -8,7 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class PlayerLoginListener implements Listener {
     private final TrollAssistant plugin = TrollAssistant.getPlugin(TrollAssistant.class);
@@ -27,7 +26,7 @@ public class PlayerLoginListener implements Listener {
                 }
             }
         }, 20L);
-
+        ChatPlayers.removePlayerFromChatList(p.getUniqueId());
 
 
     }

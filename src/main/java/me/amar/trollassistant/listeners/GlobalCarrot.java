@@ -13,7 +13,6 @@ public class GlobalCarrot {
     public static void setGlobalCarrotTrue() {
         String copy = plugin.getData().getString("carrot");
         plugin.getData().set("carrot", true);
-        Bukkit.broadcastMessage("set to true");
         try {
             plugin.getDataConfig().saveConfig();
         } catch (Exception ex) {
@@ -24,7 +23,6 @@ public class GlobalCarrot {
     public static void setGlobalCarrotFalse() {
         boolean copy = plugin.getData().getBoolean("carrot");
         plugin.getData().set("carrot", false);
-        Bukkit.broadcastMessage("set to false");
         try {
             plugin.getDataConfig().saveConfig();
         } catch (Exception ex) {

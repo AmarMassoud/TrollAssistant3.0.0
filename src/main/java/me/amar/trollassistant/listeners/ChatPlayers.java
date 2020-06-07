@@ -5,22 +5,20 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class ChatPlayers {
-    public static ArrayList<String> players = new ArrayList<>();
+    public static List<String> players = new ArrayList<>();
 
-    public static void addPlayer(String p) {
-        players.add(p);
-
-        Bukkit.broadcastMessage(TrollAssistant.colorize("added to list - add"));
+    public static void addPlayerToChatList(UUID p) {
+        players.add(p.toString());
     }
-    public static void removePlayer(String p) {
-        players.remove(p);
-
-        Bukkit.broadcastMessage(TrollAssistant.colorize("removed from list - remove"));
+    public static void removePlayerFromChatList(UUID p) {
+        players.remove(p.toString());
     }
-    public static boolean hasPlayer(String p) {
-        if (players.contains(p)) {
+    public static boolean ChatListhasPlayer(UUID p) {
+        if (players.contains(p.toString())) {
             return true;
         } else {
             return false;

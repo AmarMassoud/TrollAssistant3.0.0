@@ -45,9 +45,14 @@ public class TrollCommandManager implements CommandExecutor {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            if (target == null && !args[0].toLowerCase().equals("reload"))
-                sender.sendMessage(TrollAssistant.colorize("&cYour target must be online."));
-            if ("reload".equals(args[0].toLowerCase())) {
+            if (target == null && !args[0].toLowerCase().equals("reload")) {
+                if (args[0].equalsIgnoreCase("carrot")) {
+                    sender.sendMessage(TrollAssistant.colorize("&cPlease use &b/gtroll &cfor global trolls."));
+                } else {
+                    sender.sendMessage(TrollAssistant.colorize("&cYour target must be online."));
+                }
+            }
+             else if ("reload".equals(args[0].toLowerCase())) {
                 System.out.println("Reloading config");
                 this.plugin.reloadConfig();
                 sender.sendMessage(TrollAssistant.colorize(this.plugin.getConfig().getString("messages.reload")));
