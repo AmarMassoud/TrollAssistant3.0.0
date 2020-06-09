@@ -5,19 +5,33 @@ import com.demeng7215.demlib.api.items.XMaterial;
 import com.demeng7215.demlib.api.menus.CustomMenu;
 import me.amar.trollassistant.TrollAssistant;
 import me.amar.trollassistant.listeners.ChatPlayers;
+import me.amar.trollassistant.listeners.Frozen;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
+import java.awt.*;
 import java.util.Arrays;
 
 public class MainTrollMenu extends CustomMenu {
     private final TrollAssistant plugin = TrollAssistant.getPlugin(TrollAssistant.class);
+
     public MainTrollMenu(Player p) {
         super(27, "&bChoose an option");
         setItem(12, ItemBuilder.build(new ItemStack(XMaterial.PLAYER_HEAD.parseItem()), "&b&lPersonal Troll Menu", Arrays.asList("&cClick me to choose from the global trolls")), event -> {
             p.closeInventory();
             ChatPlayers.addPlayerToChatList(p.getUniqueId());
-            sendTitleMethod.sendTitles(p, TrollAssistant.colorize("&bPlease specify a player"), "", 1, 600, 1);
+            sendTitleMethod.sendTitle(p, TrollAssistant.colorize("&bPlease specify a player"), "", 1, 600, 1);
+            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                @Override
+                public void run() {
+                 ChatPlayers.removePlayerFromChatList(p.getUniqueId());
+                }
+            }, 600L);
+
         });
         setItem(14, ItemBuilder.build(new ItemStack(XMaterial.CREEPER_HEAD.parseItem()), "&b&lGlobal Troll Menu", Arrays.asList("&cClick here to choose from the global trolls")), event -> {
             p.closeInventory();
@@ -27,4 +41,5 @@ public class MainTrollMenu extends CustomMenu {
         setBackground(new ItemStack(XMaterial.RED_STAINED_GLASS_PANE.parseItem()));
         open(p);
     }
+
 }

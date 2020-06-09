@@ -1,6 +1,7 @@
 package me.amar.trollassistant.listeners;
 
 import me.amar.trollassistant.Menus.PersonalTrollsMenu;
+import me.amar.trollassistant.Menus.sendTitleMethod;
 import me.amar.trollassistant.TrollAssistant;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -18,8 +19,9 @@ public class ChatPlayersListener implements Listener {
             Player target = Bukkit.getPlayer(e.getMessage());
             new PersonalTrollsMenu(p, target);
             ChatPlayers.removePlayerFromChatList(p.getUniqueId());
+            sendTitleMethod.sendTitle(p, "", "", 1, 1, 1);
         } catch (Exception exc) {
-            p.sendMessage(TrollAssistant.colorize("Please specify a valid player."));
+            p.sendMessage(TrollAssistant.colorize("&cPlease specify a valid player."));
         }
 
 

@@ -1,46 +1,55 @@
 package me.amar.trollassistant.Menus;
 
 import me.amar.trollassistant.api.ReflectionUtil;
+import net.minecraft.server.v1_14_R1.ChatMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+
 public class sendTitleMethod {
-    public static void sendTitles(Player player, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
-        Class packetPlayOutTitleClass = ReflectionUtil.getNMSClass("PacketPlayOutTitle");
-        Object times = ReflectionUtil.instantiate(
-                ReflectionUtil.getConstructor(packetPlayOutTitleClass, int.class, int.class, int.class), fadeIn,
-                stay, fadeOut);
-        Class craftPlayerClass = ReflectionUtil.getOBCClass("entity.CraftPlayer");
-        Class entityPlayerClass = ReflectionUtil.getNMSClass("EntityPlayer");
-        Class playerConnectionClass = ReflectionUtil.getNMSClass("PlayerConnection");
-        Class packetClass = ReflectionUtil.getNMSClass("Packet");
+    private static final Class PacketPlayOutTitle = ReflectionUtil.getNMSClass("PacketPlayOutTitle");
+    private static final Class CraftPlayer = ReflectionUtil.getOBCClass("entity.CraftPlayer");
+    private static final Class EntityPlayer = ReflectionUtil.getNMSClass("EntityPlayer");
+    private static final Class PlayerConnection = ReflectionUtil.getNMSClass("PlayerConnection");
+    private static final Class Packet = ReflectionUtil.getNMSClass("Packet");
+    private static final Class EnumTitleAction = ReflectionUtil.getNMSClass("PacketPlayOutTitle$EnumTitleAction");
+    private static final Class IChatBaseComponent = ReflectionUtil.getNMSClass("IChatBaseComponent");
+    private static final Class ChatMessage = ReflectionUtil.getNMSClass("ChatMessage");
 
-        Object craftPlayer = craftPlayerClass.cast(player);
-        Object playerConn = ReflectionUtil.getField("playerConnection", entityPlayerClass,
-                ReflectionUtil.invokeMethod(ReflectionUtil.getMethod("getHandle", craftPlayerClass), craftPlayer));
-        ReflectionUtil.invokeMethod(ReflectionUtil.getMethod("sendPacket", playerConnectionClass, packetClass), playerConn, times);
+    private static final Constructor packetPlayOutTitleConstruct = ReflectionUtil.getConstructor(PacketPlayOutTitle, int.class, int.class, int.class);
 
-        Class packetPlayOutTitleEnumTitleActionClass = ReflectionUtil.getNMSClass("PacketPlayOutTitle.EnumTitleAction");
-        Class IChatBaseComponentClass = ReflectionUtil.getNMSClass("IChatBaseComponent");
-        Class chatMessageClass = ReflectionUtil.getNMSClass("ChatMessage");
+    private static final Method craftPlayerGetHandleMethod = ReflectionUtil.getMethod("getHandle", CraftPlayer);
+    private static final Method playerConnectionSendPacketMethod = ReflectionUtil.getMethod("sendPacket", PlayerConnection, Packet);
+
+    public static void sendTitle(Player player, String title, String subtitle, int fadeIn, int stay, int fadeOut) {
+        Object craftPlayer = CraftPlayer.cast(player);
+        Object playerConn = ReflectionUtil.getField("playerConnection", EntityPlayer,
+                ReflectionUtil.invokeMethod(craftPlayerGetHandleMethod, craftPlayer));
+
+        ReflectionUtil.invokeMethod(playerConnectionSendPacketMethod, playerConn,
+                ReflectionUtil.instantiate(packetPlayOutTitleConstruct, fadeIn, stay, fadeOut));
 
         if (title != null) {
-            Object packetSubtitle = ReflectionUtil.instantiate(ReflectionUtil.getConstructor(packetPlayOutTitleClass,
-                    packetPlayOutTitleEnumTitleActionClass, IChatBaseComponentClass), Enum.valueOf(packetPlayOutTitleEnumTitleActionClass,
-                    "TITLE"), ReflectionUtil.instantiate(ReflectionUtil.getConstructor(chatMessageClass, String.class), title));
-
-            ReflectionUtil.invokeMethod(ReflectionUtil.getMethod("sendPacket", playerConnectionClass, packetClass), playerConn,
-                    packetSubtitle);
+            ReflectionUtil.invokeMethod(playerConnectionSendPacketMethod, playerConn, getPacketTitle("TITLE", title));
         }
 
         if (subtitle != null) {
-            Object packetSubtitle =  ReflectionUtil.instantiate(ReflectionUtil.getConstructor(packetPlayOutTitleClass,
-                    packetPlayOutTitleEnumTitleActionClass, IChatBaseComponentClass), Enum.valueOf(packetPlayOutTitleEnumTitleActionClass,
-                    "SUBTITLE"), ReflectionUtil.instantiate(ReflectionUtil.getConstructor(chatMessageClass, String.class), subtitle));
-
-            ReflectionUtil.invokeMethod(ReflectionUtil.getMethod("sendPacket", playerConnectionClass, packetClass), playerConn,
-                    packetSubtitle);
+            ReflectionUtil.invokeMethod(playerConnectionSendPacketMethod, playerConn, getPacketTitle("SUBTITLE", subtitle));
         }
 
     }
+
+    public static void sendTitle(Player player, String title, String subtitle) {
+        sendTitle(player, title, subtitle, 10, 70, 20);
+    }
+
+    private static Object getPacketTitle(String titleOpt, String title) {
+        return ReflectionUtil.instantiate(ReflectionUtil.getConstructor(PacketPlayOutTitle,
+                EnumTitleAction, IChatBaseComponent), Enum.valueOf(EnumTitleAction,
+                titleOpt), ReflectionUtil.instantiate(ReflectionUtil.getConstructor(ChatMessage, String.class, Object[].class),
+                title, new Object[]{}));
+    }
+
 }

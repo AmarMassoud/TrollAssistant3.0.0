@@ -1,20 +1,27 @@
 package me.amar.trollassistant.api;
 
 import lombok.SneakyThrows;
+import org.bukkit.Bukkit;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 public class ReflectionUtil {
+    public static String version() {
+        return Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+    }
+
+    public static final Class IChatBaseComponent = getNMSClass("IChatBaseComponent");
+    public static final Class CraftMetaBook = getOBCClass("inventory.CraftMetaBook");
 
     @SneakyThrows
     public static Class getNMSClass(String clazz) {
-        return Class.forName("net.minecraft.server." + NMS.getNMSVersion() + "." + clazz);
+        return Class.forName("net.minecraft.server." + version() + "." + clazz);
     }
 
     @SneakyThrows
     public static Class getOBCClass(String clazz) {
-        return Class.forName("org.bukkit.craftbukkit." + NMS.getNMSVersion() + "." + clazz);
+        return Class.forName("org.bukkit.craftbukkit." + version() + "." + clazz);
     }
 
     @SneakyThrows
