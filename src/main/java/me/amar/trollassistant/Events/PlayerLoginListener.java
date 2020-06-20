@@ -1,6 +1,8 @@
-package me.amar.trollassistant.listeners;
+package me.amar.trollassistant.Events;
 
 import me.amar.trollassistant.TrollAssistant;
+import me.amar.trollassistant.listeners.ChatPlayers;
+import me.amar.trollassistant.listeners.Frozen;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,7 +14,7 @@ import org.bukkit.potion.PotionEffectType;
 public class PlayerLoginListener implements Listener {
     private final TrollAssistant plugin = TrollAssistant.getPlugin(TrollAssistant.class);
     @EventHandler
-    public void Login(PlayerLoginEvent e) {
+    public void Login(org.bukkit.event.player.PlayerLoginEvent e) {
         Player p = e.getPlayer();
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
             @Override

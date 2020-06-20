@@ -1,6 +1,7 @@
-package me.amar.trollassistant.listeners;
+package me.amar.trollassistant.Events;
 
 import me.amar.trollassistant.TrollAssistant;
+import me.amar.trollassistant.listeners.Frozen;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,7 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class TrolledPlayerConsumeListener implements Listener {
+public class TrolledPlayerConsumeEvent implements Listener {
     private final TrollAssistant plugin = TrollAssistant.getPlugin(TrollAssistant.class);
     @EventHandler
     public void onCursedGappleConsume(PlayerItemConsumeEvent e) {

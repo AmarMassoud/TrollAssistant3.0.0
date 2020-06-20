@@ -1,7 +1,11 @@
 hearts: 1
 messages:
   reload: "&cConfig reloaded"
-  NoPermission: "&2[&6Troll Assistant&2] &cYou do not have permission."
+  NoPermission: "&cYou do not have permission to use this command."
   freeze: "&cYou have been frozen!"
   unfreeze: "&cYou have been unfrozen!"
   freezeOnLogin: "&cYou are still freezed."
+
+MessageSent: "Carrot" # This is the message that the players will be forced to say when you choose the Carrot global troll.
+shouldBroadcastMessage: false # whether the message will be broadcasted or not when the server is globally trolled with the Carrot troll.
+BroadCastedMessage: "&cThe entire server has been untrolled with the Carrot global troll."

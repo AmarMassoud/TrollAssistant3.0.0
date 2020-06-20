@@ -27,18 +27,21 @@ public class GlobalCarrotCommand extends SubCommand {
     public void perform(CommandSender s, String[] args) {
         if (!s.hasPermission("troll.carrot") || !s.hasPermission("troll.*")) {
             s.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
-        }
-        if(GlobalCarrot.isCarrotOn()) {
-            s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2] " + "&cYou have untrolled the entire server from the carrot troll."));
-            GlobalCarrot.setGlobalCarrotFalse();
+        } else {
+            if (GlobalCarrot.isCarrotOn()) {
+                s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2] " + "&cYou have untrolled the entire server from the carrot troll."));
+                GlobalCarrot.setGlobalCarrotFalse();
+                if(plugin.getConfig().getBoolean("shouldBroadcastMessage")) {
+                    Bukkit.broadcastMessage(TrollAssistant.colorize(plugin.getConfig().getString("BroadCastedMessage")));
+                }
 
-        }  else {
-            s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2] " + "&cYou have trolled the entire server with the carrot troll!"));
-            Bukkit.broadcastMessage(TrollAssistant.colorize("&eWhat did one snowman say to the other?"));
-            Bukkit.broadcastMessage(TrollAssistant.colorize("&6Can you smell...?"));
-            GlobalCarrot.setGlobalCarrotTrue();
+            } else {
+                s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2] " + "&cYou have trolled the entire server with the carrot troll!"));
+                Bukkit.broadcastMessage(TrollAssistant.colorize("&eWhat did one snowman say to the other?"));
+                Bukkit.broadcastMessage(TrollAssistant.colorize("&6Can you smell...?"));
+                GlobalCarrot.setGlobalCarrotTrue();
+            }
         }
-
 
 
 

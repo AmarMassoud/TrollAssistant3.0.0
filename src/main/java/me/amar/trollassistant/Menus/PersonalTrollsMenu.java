@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class PersonalTrollsMenu extends CustomMenu {
     ItemStack waterBucket = XMaterial.WATER_BUCKET.parseItem();
     public PersonalTrollsMenu(Player player, Player target) {
-        super(36, "troll " + target.getName());
+        super(36, "&cTroll &b" + target.getName());
         setItem(9, ItemBuilder.build(new ItemStack(XMaterial.WATER_BUCKET.parseItem()), "&c&lMLG troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cMLG &etroll!", "&aforce your frenemies to MLG water clutch!")), event -> {
             Bukkit.dispatchCommand(event.getWhoClicked(), "troll " + target.getName() + " mlg");
             player.closeInventory();

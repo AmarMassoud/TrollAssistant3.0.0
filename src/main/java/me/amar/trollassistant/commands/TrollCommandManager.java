@@ -37,7 +37,15 @@ public class TrollCommandManager implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if (args.length == 0) {
-           new MainTrollMenu((Player) sender);
+            if(sender instanceof Player) {
+            if(sender.hasPermission("maintroll.gui")) {
+                new MainTrollMenu((Player) sender);
+            } else {
+                sender.sendMessage(TrollAssistant.colorize("&cYou do not have permission to use this command."));
+            }
+            } else {
+                sender.sendMessage("This command can only be used by players.");
+            }
         } else {
             Player target = null;
             try {
@@ -54,12 +62,16 @@ public class TrollCommandManager implements CommandExecutor {
             }
              else if ("reload".equals(args[0].toLowerCase())) {
                 System.out.println("Reloading config");
-                this.plugin.reloadConfig();
+
                 sender.sendMessage(TrollAssistant.colorize(this.plugin.getConfig().getString("messages.reload")));
             } else if (args.length == 1) {
                 if (sender instanceof Player) {
-                    sender.sendMessage(TrollAssistant.colorize("&eTrolling &c" + target.getName()));
-                    new PersonalTrollsMenu((Player)sender, target);
+                    if(sender.hasPermission("personaltroll.gui")) {
+                        sender.sendMessage(TrollAssistant.colorize("&eTrolling &c" + target.getName()));
+                        new PersonalTrollsMenu((Player) sender, target);
+                    } else {
+                        sender.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
+                    }
                 } else {
                     sender.sendMessage(TrollAssistant.colorize("&cThis command can only be used by players"));
                 }

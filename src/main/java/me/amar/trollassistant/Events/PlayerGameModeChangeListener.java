@@ -1,6 +1,7 @@
-package me.amar.trollassistant.listeners;
+package me.amar.trollassistant.Events;
 
 import me.amar.trollassistant.TrollAssistant;
+import me.amar.trollassistant.listeners.Frozen;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,7 +12,7 @@ import org.bukkit.potion.PotionEffectType;
 public class PlayerGameModeChangeListener implements Listener {
     private final TrollAssistant plugin = TrollAssistant.getPlugin(TrollAssistant.class);
     @EventHandler
-    public void GamemodeChange(PlayerGameModeChangeEvent e) {
+    public void GamemodeChange(org.bukkit.event.player.PlayerGameModeChangeEvent e) {
         Player p = e.getPlayer();
         if (p.getGameMode() == GameMode.SURVIVAL || p.getGameMode() == GameMode.CREATIVE || p.getGameMode() == GameMode.SPECTATOR) {
             if (Frozen.isFrozenPlayer(p.getUniqueId().toString())) {

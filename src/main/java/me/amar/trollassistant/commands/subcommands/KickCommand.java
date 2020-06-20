@@ -36,7 +36,7 @@ public class KickCommand extends SubCommand {
             s.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
         } else {
             target.kickPlayer("internal exception java.io.ioexception an existing connection was forcibly closed by the remote host");
-            s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2]" + target.getDisplayName() + "&chas been trolled with the &bKick &ctroll."));
+            s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2]" + target.getDisplayName() + " &chas been trolled with the &bKick &ctroll."));
         }
     }
 }

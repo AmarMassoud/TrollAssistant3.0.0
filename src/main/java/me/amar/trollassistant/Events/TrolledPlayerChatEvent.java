@@ -1,4 +1,4 @@
-package me.amar.trollassistant.listeners;
+package me.amar.trollassistant.Events;
 
 import me.amar.trollassistant.TrollAssistant;
 import me.amar.trollassistant.modules.ReplaceTrollPlayer;
@@ -6,7 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-public class TrolledPlayerChatListener implements Listener {
+public class TrolledPlayerChatEvent implements Listener {
     @EventHandler
     public void onTrolledPlayerChatListener(AsyncPlayerChatEvent e) {
 

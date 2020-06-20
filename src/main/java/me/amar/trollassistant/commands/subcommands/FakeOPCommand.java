@@ -33,7 +33,7 @@ public class FakeOPCommand extends SubCommand {
         }
         if (!s.hasPermission("troll.fakeop") || !s.hasPermission("troll.*")) {
             s.sendMessage(TrollAssistant.colorize(plugin.getConfig().getString("messages.NoPermission")));
-        }  else{
+        }  else {
             target.sendMessage(TrollAssistant.colorize("&7[Server: Opped " + target.getName()) + "]");
             s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2] " + target.getDisplayName() + " &chas been trolled with the &bFakeOP &ctroll."));
         }
