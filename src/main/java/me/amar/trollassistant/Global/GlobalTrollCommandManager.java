@@ -1,5 +1,6 @@
 package me.amar.trollassistant.Global;
 
+import me.amar.trollassistant.Global.GlobalSubCommands.GlobalEnderSpookCommand;
 import me.amar.trollassistant.Global.GlobalSubCommands.GlobalMLGCommand;
 import me.amar.trollassistant.Menus.GlobalTrollsMenu;
 import me.amar.trollassistant.TrollAssistant;
@@ -20,6 +21,7 @@ public class GlobalTrollCommandManager implements CommandExecutor {
     public GlobalTrollCommandManager() {
         GSubCommands.add(new GlobalCarrotCommand());
         GSubCommands.add(new GlobalMLGCommand());
+        GSubCommands.add(new GlobalEnderSpookCommand());
     }
 
 

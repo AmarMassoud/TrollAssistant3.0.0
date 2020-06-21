@@ -22,6 +22,12 @@ public class GlobalTrollsMenu extends CustomMenu {
             p.closeInventory();
 
         });
+        setItem(11, ItemBuilder.build(new ItemStack(XMaterial.ENDER_PEARL.parseItem()), "&cTo choose the EnderSpook troll", Arrays.asList("&cScare the crap out of all players!")), event -> {
+            Bukkit.dispatchCommand(event.getWhoClicked(), "globaltroll enderspook");
+            p.closeInventory();
+
+        });
+
         setBackground(XMaterial.RED_STAINED_GLASS_PANE.parseItem());
         open(p);
 
