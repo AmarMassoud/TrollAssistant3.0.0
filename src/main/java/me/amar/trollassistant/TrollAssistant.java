@@ -1,9 +1,9 @@
 package me.amar.trollassistant;
 
 import com.demeng7215.demlib.DemLib;
-import com.demeng7215.demlib.api.files.CustomConfig;
 import lombok.Getter;
 import me.amar.trollassistant.Events.*;
+import me.amar.trollassistant.Files.DataYml;
 import me.amar.trollassistant.Global.GlobalTrollCommandManager;
 import me.amar.trollassistant.commands.TrollCommandManager;
 import me.amar.trollassistant.commands.TabExecutor;
@@ -14,11 +14,11 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public final class TrollAssistant extends JavaPlugin {
     @Getter
-    private CustomConfig dataConfig;
     private static TrollAssistant instance;
 
     private static List<ReplaceTrollPlayer> replaceTrollPlayers = new ArrayList<>();
@@ -27,11 +27,7 @@ public final class TrollAssistant extends JavaPlugin {
     @Override
     public void onEnable() {
         DemLib.setPlugin(this);
-        try {
-            this.dataConfig = new CustomConfig("data.yml");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        loadConfigManager();
         getCommand("troll").setExecutor(new TrollCommandManager());
         getCommand("globaltroll").setExecutor(new GlobalTrollCommandManager());
         Bukkit.getPluginManager().registerEvents(new TrolledPlayerChatEvent(), this);
@@ -46,6 +42,7 @@ public final class TrollAssistant extends JavaPlugin {
         getLogger().info("Troll Assistant " + getDescription().getVersion() + " enabled");
         instance = this;
 
+
     }
 
     @Override
@@ -55,9 +52,6 @@ public final class TrollAssistant extends JavaPlugin {
 
     }
 
-    public FileConfiguration getData() {
-        return dataConfig.getConfig();
-    }
 
     public static List<ReplaceTrollPlayer> getReplaceTrollPlayers() {
         return replaceTrollPlayers;
@@ -74,5 +68,14 @@ public final class TrollAssistant extends JavaPlugin {
 
     public static TrollAssistant getInstance() {
         return instance;
+    }
+    public void loadConfigManager() {
+        DataYml.setUpDataYml();
+        DataYml.reloadDataYml();
+        final List<String> frozen = Arrays.asList();
+        DataYml.getDataYml().addDefault("frozen", frozen);
+        DataYml.getDataYml().addDefault("carrot", false);
+        DataYml.getDataYml().options().copyDefaults(true);
+        DataYml.saveDataYml();
     }
 }

@@ -1,5 +1,6 @@
 package me.amar.trollassistant.listeners;
 
+import me.amar.trollassistant.Files.DataYml;
 import me.amar.trollassistant.TrollAssistant;
 import org.bukkit.Bukkit;
 
@@ -11,28 +12,19 @@ public class GlobalCarrot {
     public static String carrot = new String();
 
     public static void setGlobalCarrotTrue() {
-        String copy = plugin.getData().getString("carrot");
-        plugin.getData().set("carrot", true);
-        try {
-            plugin.getDataConfig().saveConfig();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        String copy = DataYml.getDataYml().getString("carrot");
+        DataYml.getDataYml().set("carrot", true);
+        DataYml.saveDataYml();
     }
 
     public static void setGlobalCarrotFalse() {
-        boolean copy = plugin.getData().getBoolean("carrot");
-        plugin.getData().set("carrot", false);
-        try {
-            plugin.getDataConfig().saveConfig();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
+        boolean copy = DataYml.getDataYml().getBoolean("carrot");
+        DataYml.getDataYml().set("carrot", false);
+        DataYml.saveDataYml();
     }
 
     public static boolean isCarrotOn() {
-        boolean copy = plugin.getData().getBoolean("carrot");
+        boolean copy = DataYml.getDataYml().getBoolean("carrot");
         if (copy == true) {
             return true;
         } else {
