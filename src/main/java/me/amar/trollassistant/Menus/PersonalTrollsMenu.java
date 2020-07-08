@@ -1,28 +1,28 @@
 package me.amar.trollassistant.Menus;
 
-import com.demeng7215.demlib.api.items.ItemBuilder;
-import com.demeng7215.demlib.api.items.XMaterial;
-import com.demeng7215.demlib.api.menus.CustomMenu;
+import dev.demeng.demlib.api.items.ItemCreator;
+import dev.demeng.demlib.api.xseries.XMaterial;
 import me.amar.trollassistant.TrollAssistant;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.awt.*;
 import java.util.Arrays;
-public class PersonalTrollsMenu extends CustomMenu {
+public class PersonalTrollsMenu extends Menu {
     ItemStack waterBucket = XMaterial.WATER_BUCKET.parseItem();
     public PersonalTrollsMenu(Player player, Player target) {
         super(36, "&cTroll &b" + target.getName());
-        setItem(9, ItemBuilder.build(new ItemStack(XMaterial.WATER_BUCKET.parseItem()), "&c&lMLG troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cMLG &etroll!", "&aforce your frenemies to MLG water clutch!")), event -> {
+        setItem(9, ItemCreator.quickBuild(new ItemStack(XMaterial.WATER_BUCKET.parseItem()), "&c&lMLG troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cMLG &etroll!", "&aforce your frenemies to MLG water clutch!")), event -> {
             Bukkit.dispatchCommand(event.getWhoClicked(), "troll " + target.getName() + " mlg");
             player.closeInventory();
         });
-        setItem(10, ItemBuilder.build(new ItemStack(XMaterial.POTATO.parseItem()), "&c&lPotato troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cpotato &etroll!", "&aFill the player's inventory  with spuds!")), event -> {
+        setItem(10, ItemCreator.quickBuild(new ItemStack(XMaterial.POTATO.parseItem()), "&c&lPotato troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cpotato &etroll!", "&aFill the player's inventory  with spuds!")), event -> {
             Bukkit.dispatchCommand(event.getWhoClicked(), "troll " + target.getName() + " potato");
             player.closeInventory();
         });
-        setItem(11, ItemBuilder.build(new ItemStack(XMaterial.GOLDEN_APPLE.parseItem()), "&c&lDevil Apple troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cDevil Apple &etroll!", "&aSlips a golden apple into the player's inventory", "&awhich has catastrophic effects when eaten...")), event -> {
+        setItem(11, ItemCreator.quickBuild(new ItemStack(XMaterial.GOLDEN_APPLE.parseItem()), "&c&lDevil Apple troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cDevil Apple &etroll!", "&aSlips a golden apple into the player's inventory", "&awhich has catastrophic effects when eaten...")), event -> {
             Bukkit.dispatchCommand(event.getWhoClicked(), "troll " + target.getName() + " devilapple");
             player.closeInventory();
         });

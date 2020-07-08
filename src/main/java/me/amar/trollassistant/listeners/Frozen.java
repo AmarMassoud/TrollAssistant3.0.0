@@ -27,10 +27,8 @@ public class Frozen {
     public static boolean isFrozenPlayer(String p) {
         List<String> copy = new ArrayList<>(DataYml.getDataYml().getStringList("frozen"));
         if (copy.contains(p)) {
-            System.out.println("is");
             return true;
         } else {
-            System.out.println("is not");
             return false;
         }
     }

@@ -1,6 +1,6 @@
 package me.amar.trollassistant;
 
-import com.demeng7215.demlib.DemLib;
+import dev.demeng.demlib.DemLib;
 import lombok.Getter;
 import me.amar.trollassistant.Events.*;
 import me.amar.trollassistant.Files.DataYml;
