@@ -1,10 +1,10 @@
 package me.amar.trollassistant.Menus;
 
 import dev.demeng.demlib.api.items.ItemCreator;
+import dev.demeng.demlib.api.menus.Menu;
 import dev.demeng.demlib.api.xseries.XMaterial;
 import me.amar.trollassistant.TrollAssistant;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -27,35 +27,36 @@ public class PersonalTrollsMenu extends Menu {
             player.closeInventory();
         });
 
-        setItem(12, ItemBuilder.build(new ItemStack(XMaterial.BARRIER.parseItem()), "&c&lKick troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &ckick &etroll!", "")), event -> {
+        setItem(12, ItemCreator.quickBuild(new ItemStack(XMaterial.BARRIER.parseItem()), "&c&lKick troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &ckick &etroll!", "")), event -> {
             Bukkit.dispatchCommand(event.getWhoClicked(), "troll " + target.getName() + " kick");
             player.closeInventory();
         });
-        setItem(13, ItemBuilder.build((new ItemStack(XMaterial.PLAYER_HEAD.parseItem())), "&c&lPlayerChat troll " + target.getName(), Arrays.asList("&cComing soon!", "")), event -> {
+        setItem(13, ItemCreator.quickBuild((new ItemStack(XMaterial.PLAYER_HEAD.parseItem())), "&c&lPlayerChat troll " + target.getName(), Arrays.asList("&cComing soon!", "")), event -> {
             player.closeInventory();
             player.sendMessage(TrollAssistant.colorize("&cComing soon!"));
         });
-        setItem(14, ItemBuilder.build(new ItemStack(XMaterial.RED_WOOL.parseItem()), "&c&lChat troll " + target.getName(), Arrays.asList("&cComing soon!")), event -> {
+        setItem(14, ItemCreator.quickBuild(new ItemStack(XMaterial.RED_WOOL.parseItem()), "&c&lChat troll " + target.getName(), Arrays.asList("&cComing soon!")), event -> {
             player.closeInventory();
             player.sendMessage(TrollAssistant.colorize("&cComing soon!"));
         });
-        setItem(15, ItemBuilder.build(new ItemStack(XMaterial.TRAPPED_CHEST.parseItem()), "&c&lDemo Mode troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cDemo Mode &etroll!")), event -> {
+        setItem(15, ItemCreator.quickBuild(new ItemStack(XMaterial.TRAPPED_CHEST.parseItem()), "&c&lDemo Mode troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cDemo Mode &etroll!")), event -> {
             player.closeInventory();
             Bukkit.dispatchCommand(event.getWhoClicked(), "troll " + target.getName() + " demo");
         });
-        setItem(16, ItemBuilder.build(new ItemStack(XMaterial.BOW.parseItem()), "&c&lPush troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cPush &etroll!")), event -> {
+        setItem(16, ItemCreator.quickBuild(new ItemStack(XMaterial.BOW.parseItem()), "&c&lPush troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cPush &etroll!")), event -> {
             player.closeInventory();
             Bukkit.dispatchCommand(event.getWhoClicked(), "troll " + target.getName() + " push");
         });
-        setItem(17, ItemBuilder.build(new ItemStack(XMaterial.ENDER_PEARL.parseItem()), "&c&lEnderSpook troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cEnderSpook &etroll!")), event -> {
+        setItem(17, ItemCreator.quickBuild(
+                new ItemStack(XMaterial.ENDER_PEARL.parseItem()), "&c&lEnderSpook troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cEnderSpook &etroll!")), event -> {
             player.closeInventory();
             Bukkit.dispatchCommand(event.getWhoClicked(), "troll " + target.getName() + " EnderSpook");
         });
-        setItem(18, ItemBuilder.build(new ItemStack(XMaterial.FIRE_CHARGE.parseItem()), "&c&lFakeOP troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cFakeOP &etroll!")), event -> {
+        setItem(18, ItemCreator.quickBuild(new ItemStack(XMaterial.FIRE_CHARGE.parseItem()), "&c&lFakeOP troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cFakeOP &etroll!")), event -> {
             player.closeInventory();
             Bukkit.dispatchCommand(event.getWhoClicked(), "troll " + target.getName() + " fakeop");
         });
-        setItem(19, ItemBuilder.build(new ItemStack(XMaterial.SNOWBALL.parseItem()), "&c&lFreeze troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cFreeze &etroll!")), event -> {
+        setItem(19, ItemCreator.quickBuild(new ItemStack(XMaterial.SNOWBALL.parseItem()), "&c&lFreeze troll " + target.getName(), Arrays.asList("&eClick to troll &d" + target.getName() + " &ewith the &cFreeze &etroll!")), event -> {
             player.closeInventory();
             Bukkit.dispatchCommand(event.getWhoClicked(), "troll " + target.getName() + " freeze");
         });
