@@ -1,0 +1,10 @@
+name: TrollAssistant
+version: 3.1.1
+main: me.amar.trollassistant.TrollAssistant
+api-version: 1.13
+commands:
+  troll:
+    description: troll your players with ease.
+  globaltroll:
+    description: troll your players globally.
+    aliases: gtroll
