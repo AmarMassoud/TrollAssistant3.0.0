@@ -1,6 +1,8 @@
 package me.amar.trollassistant;
 
-import dev.demeng.demlib.DemLib;
+
+import dev.demeng.pluginbase.plugin.BaseManager;
+import dev.demeng.pluginbase.plugin.BasePlugin;
 import lombok.Getter;
 import me.amar.trollassistant.Events.*;
 import me.amar.trollassistant.Files.DataYml;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public final class TrollAssistant extends JavaPlugin {
+public final class TrollAssistant extends BasePlugin {
     @Getter
     private static TrollAssistant instance;
 
@@ -25,8 +27,8 @@ public final class TrollAssistant extends JavaPlugin {
 
 
     @Override
-    public void onEnable() {
-        DemLib.setPlugin(this);
+    public void enable() {
+        BaseManager.setPlugin(this);
         loadConfigManager();
         getCommand("troll").setExecutor(new TrollCommandManager());
         getCommand("globaltroll").setExecutor(new GlobalTrollCommandManager());
@@ -37,6 +39,7 @@ public final class TrollAssistant extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerGameModeChangeListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerLoginListener(), this);
         Bukkit.getPluginManager().registerEvents(new ChatPlayersEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new BrrDamagEvent(), this);
         getConfig().options().copyDefaults(true);
         saveConfig();
         getLogger().info("Troll Assistant " + getDescription().getVersion() + " enabled");
@@ -46,7 +49,7 @@ public final class TrollAssistant extends JavaPlugin {
     }
 
     @Override
-    public void onDisable() {
+    public void disable() {
         getLogger().info("Troll Assistant " + getDescription().getVersion() + " disabled");
 
 

@@ -1,8 +1,10 @@
 package me.amar.trollassistant.Menus;
 
-import dev.demeng.demlib.api.items.ItemCreator;
-import dev.demeng.demlib.api.menus.Menu;
-import dev.demeng.demlib.api.xseries.XMaterial;
+
+import dev.demeng.pluginbase.item.ItemBuilder;
+import dev.demeng.pluginbase.lib.xseries.XMaterial;
+import dev.demeng.pluginbase.menu.layout.Menu;
+import dev.demeng.pluginbase.text.TextUtils;
 import me.amar.trollassistant.TrollAssistant;
 import me.amar.trollassistant.listeners.ChatPlayers;
 import me.amar.trollassistant.listeners.Frozen;
@@ -13,7 +15,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.awt.*;
 import java.util.Arrays;
 
 public class MainTrollMenu extends Menu {
@@ -21,11 +22,12 @@ public class MainTrollMenu extends Menu {
 
     public MainTrollMenu(Player p) {
         super(27, "&bChoose an option");
-        setItem(12, ItemCreator.quickBuild(new ItemStack(XMaterial.PLAYER_HEAD.parseItem()), "&b&lPersonal Troll Menu", Arrays.asList("&cClick me to choose from the personal trolls")),event -> {
+        addButton(12, ItemBuilder.create(XMaterial.PLAYER_HEAD.parseItem()).name("&b&lPersonal Troll Menu").lore(Arrays.asList("&cClick me to choose from the personal trolls")).get(), event -> {
             if(p.hasPermission("personaltroll.gui")) {
                 p.closeInventory();
                 ChatPlayers.addPlayerToChatList(p.getUniqueId());
-                sendTitleMethod.sendTitle(p, TrollAssistant.colorize("&bPlease specify a player"), "", 1, 600, 1);
+             //   sendTitleMethod.sendTitle(p, TrollAssistant.colorize("&bPlease specify a player"), "", 1, 600, 1);
+                TextUtils.sendTitle(p, "&bPlease specify a player", "", 1, 600, 1);
                 Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                     @Override
                     public void run() {
@@ -41,7 +43,7 @@ public class MainTrollMenu extends Menu {
 
 
         });
-        setItem(14, ItemCreator.quickBuild(new ItemStack(XMaterial.CREEPER_HEAD.parseItem()), "&b&lGlobal Troll Menu", Arrays.asList("&cClick here to choose from the global trolls")), event -> {
+        addButton(14, ItemBuilder.create(XMaterial.CREEPER_HEAD.parseItem()).name("&b&lGlobal Troll Menu").lore(Arrays.asList("&cClick here to choose from the global trolls")).get(), event -> {
             if(p.hasPermission("globaltroll.gui")) {
 
                 p.closeInventory();

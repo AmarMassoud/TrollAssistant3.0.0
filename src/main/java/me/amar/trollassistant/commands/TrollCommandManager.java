@@ -31,6 +31,7 @@ public class TrollCommandManager implements CommandExecutor {
         SubCommands.add(new PlayerChatCommand());
         SubCommands.add(new PushCommand());
         SubCommands.add(new FakeNukeCommand());
+        SubCommands.add(new GoBrr());
 
     }
 

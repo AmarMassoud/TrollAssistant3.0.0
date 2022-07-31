@@ -1,6 +1,7 @@
 package me.amar.trollassistant.commands.subcommands;
 
-import dev.demeng.demlib.api.xseries.XMaterial;
+
+import dev.demeng.pluginbase.lib.xseries.XMaterial;
 import me.amar.trollassistant.TrollAssistant;
 import me.amar.trollassistant.commands.SubCommand;
 import org.bukkit.Bukkit;

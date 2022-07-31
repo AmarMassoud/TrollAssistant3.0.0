@@ -1,9 +1,10 @@
 package me.amar.trollassistant.Menus;
 
-import dev.demeng.demlib.api.menus.Menu;
+
+import dev.demeng.pluginbase.menu.layout.Menu;
 import org.bukkit.entity.Player;
 
-import java.awt.*;
+
 
 public class PlayersMenu extends Menu {
     public PlayersMenu(Player p) {

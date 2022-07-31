@@ -1,5 +1,6 @@
 package me.amar.trollassistant.Events;
 
+import dev.demeng.pluginbase.text.TextUtils;
 import me.amar.trollassistant.Menus.PersonalTrollsMenu;
 import me.amar.trollassistant.Menus.sendTitleMethod;
 import me.amar.trollassistant.TrollAssistant;
@@ -24,7 +25,7 @@ public class ChatPlayersEvent implements Listener {
                         Player target = Bukkit.getPlayer(e.getMessage());
                         new PersonalTrollsMenu(p, target);
                         ChatPlayers.removePlayerFromChatList(p.getUniqueId());
-                        sendTitleMethod.sendTitle(p, "", "", 1, 1, 1);
+                        TextUtils.sendTitle(p, "", "");
                     } catch (NullPointerException exc) {
                         p.sendMessage(TrollAssistant.colorize("&cPlease specify a valid player."));
                     }

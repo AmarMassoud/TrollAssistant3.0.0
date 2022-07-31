@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class DemoCommand extends SubCommand {
@@ -58,4 +59,5 @@ public class DemoCommand extends SubCommand {
             s.sendMessage(TrollAssistant.colorize("&2[&6Troll Assistant&2] " + target.getDisplayName() + " &chas been trolled with the &bDemo Mode &ctroll."));
         }
     }
+
 }
