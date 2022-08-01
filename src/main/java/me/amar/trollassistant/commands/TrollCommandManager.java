@@ -90,17 +90,3 @@ public class TrollCommandManager implements CommandExecutor {
         return SubCommands;
     }
 }
-//            for (int i = 0; i < getSubCommands().size(); i++) {
-//                getSubCommands().get(i).getName();
-//                if(getSubCommands().size() == i) {
-//                    if(args.length == 2 && args[1] != "reload" && args[1] == null && args[2] != getSubCommands().get(i).getName() ) {
-//                        sender.sendMessage(TrollAssistant.colorize("Please specify a valid troll."));
-//                    }
-//                }
-//            }
-//            if(args.length == 2 && args[1] != "reload" && args[1] == null && args[2] != ) {
-//
-//            }
-
-
-// SHUT THE FUCK UP I DON'T HAVE MONEY TO BUY WINDOWS ok bye
